@@ -1,7 +1,7 @@
 import React from 'react'
 import './NavButton.css'
 
-export const NavButton = ({ type, children }) => {
+export const NavButton = ({ active, type, children }) => {
   const supportedTypes = ['btn-dots', 'btn-pulse', 'btn-zigzag']
 
   if (!supportedTypes.includes(type)) {
@@ -9,7 +9,7 @@ export const NavButton = ({ type, children }) => {
     return <p style={{ color: 'red', fontSize: '10px' }}>ERROR: Console</p>
   }
 
-  return <button className={`btn ${type}`}>{children}</button>
+  return <button className={`btn ${type} ${active && 'active'}`}>{children}</button>
 }
 
 // New Buttons https://codepen.io/giana/pen/dMdyaX

@@ -1,20 +1,27 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import { NavButton } from './NavButton'
 
 export const NavBar = () => {
+  const location = useLocation()
   const styles = getStyles()
 
   return (
     <div style={styles.navbar}>
       <Link style={styles.link} to="/eat">
-        <NavButton type="btn-dots">Eat</NavButton>
+        <NavButton active={location.pathname === '/eat'} type="btn-dots">
+          Eat
+        </NavButton>
       </Link>
       <Link style={styles.link} to="/experience">
-        <NavButton type="btn-pulse">Experience</NavButton>
+        <NavButton active={location.pathname === '/experience'} type="btn-pulse">
+          Experience
+        </NavButton>
       </Link>
       <Link style={styles.link} to="/exist">
-        <NavButton type="btn-zigzag">Exist</NavButton>
+        <NavButton active={location.pathname === '/exist'} type="btn-zigzag">
+          Exist
+        </NavButton>
       </Link>
     </div>
   )
