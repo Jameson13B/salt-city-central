@@ -7,6 +7,7 @@ import { Home } from './views/Home'
 import { EatView } from './views/EatView'
 import { Experience } from './views/Experience'
 import { Exist } from './views/Exist'
+import { AdminForm } from './views/AdminForm'
 
 export const App = () => {
   const styles = getStyles()
@@ -16,6 +17,7 @@ export const App = () => {
       <Header />
       <NavBar />
       <Route exact path="/" component={Home} />
+      <Route path="/admin-form" component={AdminForm} />
       <Route path="/eat" component={EatView} />
       {/* <Route path="/eat/:id" component={Eat} /> */}
       <Route path="/experience" component={Experience} />
