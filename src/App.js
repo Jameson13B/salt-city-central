@@ -1,16 +1,23 @@
 import React from 'react'
+import { Route } from 'react-router-dom'
+import { Header } from './components/Header'
 import { NavBar } from './components/NavBar'
+import { Home } from './views/Home'
+import { Eat } from './views/Eat'
+import { Do } from './views/Do'
+import { Join } from './views/Join'
 
 function App() {
   const styles = getStyles()
 
   return (
     <div style={styles.app}>
-      <div style={styles.header}>
-        <h1 style={{ marginBottom: 10 }}>Salt City Central</h1>
-        <h1 style={{ marginBottom: 10 }}>AB</h1>
-      </div>
+      <Header />
       <NavBar />
+      <Route exact path="/" component={Home} />
+      <Route path='/eat' component={Eat} />
+      <Route path='/do' component={Do} />
+      <Route path='/join' component={Join} />
     </div>
   )
 }
@@ -22,11 +29,6 @@ const getStyles = () => {
     app: {
       maxWidth: '768px',
       margin: '0 auto',
-    },
-    header: {
-      borderBottom: '1px solid black',
-      display: 'flex',
-      justifyContent: 'space-between',
     },
   }
 }

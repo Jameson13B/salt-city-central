@@ -11,3 +11,5 @@ export const NavButton = ({ type, children }) => {
 
   return <button className={`btn ${type}`}>{children}</button>
 }
+
+// New Buttons https://codepen.io/giana/pen/dMdyaX
