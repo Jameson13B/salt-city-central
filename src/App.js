@@ -4,8 +4,8 @@ import { Header } from './components/Header'
 import { NavBar } from './components/NavBar'
 import { Home } from './views/Home'
 import { Eat } from './views/Eat'
-import { Do } from './views/Do'
-import { Join } from './views/Join'
+import { Experience } from './views/Experience'
+import { Exist } from './views/Exist'
 
 function App() {
   const styles = getStyles()
@@ -15,9 +15,9 @@ function App() {
       <Header />
       <NavBar />
       <Route exact path="/" component={Home} />
-      <Route path='/eat' component={Eat} />
-      <Route path='/do' component={Do} />
-      <Route path='/join' component={Join} />
+      <Route path="/eat" component={Eat} />
+      <Route path="/experience" component={Experience} />
+      <Route path="/exist" component={Exist} />
     </div>
   )
 }

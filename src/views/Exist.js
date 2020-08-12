@@ -1,17 +1,17 @@
 import React from 'react'
 
-export const Do = () => {
+export const Exist = () => {
   const styles = getStyles()
 
   return (
-    <div style={styles.do}>
-      <h2>Do</h2>
+    <div style={styles.exist}>
+      <h2>Exist</h2>
     </div>
   )
 }
 
 const getStyles = () => {
   return {
-    do: {},
+    exist: {},
   }
 }

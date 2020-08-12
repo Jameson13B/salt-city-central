@@ -10,11 +10,11 @@ export const NavBar = () => {
       <Link style={styles.link} to="/eat">
         <NavButton type="btn-dots">Eat</NavButton>
       </Link>
-      <Link style={styles.link} to="/do">
-        <NavButton type="btn-pulse">Do</NavButton>
+      <Link style={styles.link} to="/experience">
+        <NavButton type="btn-pulse">Experience</NavButton>
       </Link>
-      <Link style={styles.link} to="/join">
-        <NavButton type="btn-zigzag">Join</NavButton>
+      <Link style={styles.link} to="/exist">
+        <NavButton type="btn-zigzag">Exist</NavButton>
       </Link>
     </div>
   )
