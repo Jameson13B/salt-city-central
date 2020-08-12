@@ -16,6 +16,8 @@ const Firebase = firebase.initializeApp(firebaseConfig)
 
 // Database instance
 export const database = Firebase.firestore()
+export const restaurants = (cb) => database.collection('restaurants').onSnapshot(cb)
+export const experiences = (cb) => database.collection('experiences').onSnapshot(cb)
 export const serverTimestamp = () => firebase.firestore.FieldValue.serverTimestamp()
 
 // Authorization instance
