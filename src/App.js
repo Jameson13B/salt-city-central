@@ -7,7 +7,7 @@ import { Eat } from './views/Eat'
 import { Experience } from './views/Experience'
 import { Exist } from './views/Exist'
 
-function App() {
+export const App = () => {
   const styles = getStyles()
 
   return (
@@ -21,8 +21,6 @@ function App() {
     </div>
   )
 }
-
-export default App
 
 const getStyles = () => {
   return {
