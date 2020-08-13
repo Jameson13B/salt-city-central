@@ -32,6 +32,7 @@ const getStyles = () => {
     navbar: {
       display: 'flex',
       justifyContent: 'space-evenly',
+      margin: '0 15px',
     },
     link: {
       textDecoration: 'none',
