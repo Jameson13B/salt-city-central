@@ -1,7 +1,10 @@
 import React from 'react'
 import { Route } from 'react-router-dom'
+// import { useTracking } from './useTracking'
+
 import { Header } from './components/Header'
 import { NavBar } from './components/NavBar'
+
 // import { Eat } from './views/Eat'
 import { Home } from './views/Home'
 import { EatView } from './views/EatView'
@@ -11,6 +14,8 @@ import { AdminForm } from './views/AdminForm'
 
 export const App = () => {
   const styles = getStyles()
+  // Used to report routes to Google Analytics
+  // useTracking()
 
   return (
     <div style={styles.app}>
