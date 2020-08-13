@@ -5,7 +5,7 @@ import { Route } from 'react-router-dom'
 import { Header } from './components/Header'
 import { NavBar } from './components/NavBar'
 
-// import { Eat } from './views/Eat'
+import { Eat } from './views/Eat'
 import { Home } from './views/Home'
 import { EatView } from './views/EatView'
 import { Experience } from './views/Experience'
@@ -23,8 +23,8 @@ export const App = () => {
       <NavBar />
       <Route exact path="/" component={Home} />
       <Route path="/admin-form" component={AdminForm} />
-      <Route path="/eat" component={EatView} />
-      {/* <Route path="/eat/:id" component={Eat} /> */}
+      <Route exact path="/eat" component={EatView} />
+      <Route path="/eat/:id" component={Eat} />
       <Route path="/experience" component={Experience} />
       <Route path="/exist" component={Exist} />
     </div>
