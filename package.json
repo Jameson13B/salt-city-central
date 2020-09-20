@@ -6,6 +6,7 @@
     "cra-template": "1.0.3",
     "dotenv": "^8.2.0",
     "firebase": "^7.17.2",
+    "glamor": "^2.20.40",
     "lodash": "^4.17.19",
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
