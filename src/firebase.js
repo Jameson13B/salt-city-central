@@ -20,6 +20,8 @@ export const getRestaurant = (id) => database.collection('restaurants').doc(id)
 export const getExperiences = (id) => database.collection('experiences').doc(id)
 export const restaurants = (cb) => database.collection('restaurants').onSnapshot(cb)
 export const experiences = (cb) => database.collection('experiences').onSnapshot(cb)
+export const addRestaurant = database.collection('restaurants')
+export const addExperiences = database.collection('experiences')
 export const serverTimestamp = () => firebase.firestore.FieldValue.serverTimestamp()
 
 // Authorization instance
