@@ -5,13 +5,23 @@ export const Home = () => {
 
   return (
     <div style={styles.home}>
-      <h2>Home</h2>
+      <h1>Welcome to Salt City Central</h1>
+      <h3 style={styles.description}>
+        Your central hub for the places to eat, the things to experience, and opportunities to exist
+        in Salt Lake City.
+      </h3>
     </div>
   )
 }
 
 const getStyles = () => {
   return {
-    home: {},
+    home: {
+      textAlign: 'center',
+    },
+    description: {
+      maxWidth: '500px',
+      margin: '0 auto',
+    },
   }
 }
