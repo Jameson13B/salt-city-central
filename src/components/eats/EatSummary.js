@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
+
 export const EatSummary = (props) => {
   const { eat } = props
   const styles = getStyles()
@@ -15,7 +16,9 @@ export const EatSummary = (props) => {
         to={`/eat/${eat.id}`}
       >
         <div style={styles.eatHeader}>
-          <h2 style={{ marginTop: 0 }}>{eat.name}</h2>
+          <h2 style={{ marginTop: 0 }}>
+            {eat.name} {eat.attended && <span>&#10004;</span>}
+          </h2>
           <p style={{ fontStyle: 'italic', marginTop: 0 }}>{eat.neighborhood}</p>
         </div>
         <p>{eat.description}</p>
