@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { getRestaurant } from '../firebase'
 import _isEmpty from 'lodash/isEmpty'
+import { Icon } from '../assets/Icons'
 
 export const Eat = (props) => {
   const [eat, setEat] = useState({})
@@ -8,7 +9,7 @@ export const Eat = (props) => {
   const styles = getStyles()
 
   useEffect(() => {
-    getRestaurant.doc(match.params.id).onSnapshot((doc) => {
+    getRestaurant(match.params.id).onSnapshot((doc) => {
       setEat({ id: doc.id, ...doc.data() })
     })
   }, [eat, match])
@@ -20,7 +21,10 @@ export const Eat = (props) => {
       ) : (
         <React.Fragment>
           <div style={styles.eatHeader}>
-            <h1 style={{ marginTop: 0 }}>{eat.name}</h1>
+            <h1 style={{ marginTop: 0 }}>
+              {eat.name} {eat.attended && <span>&#10004;</span>}{' '}
+              {eat.url && <Icon onClick={() => window.open(eat.url, '_blank')} type="link" />}
+            </h1>
             <p style={{ fontStyle: 'italic', marginTop: 0 }}>{eat.neighborhood}</p>
           </div>
           <p>{eat.description}</p>
