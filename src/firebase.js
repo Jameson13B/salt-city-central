@@ -24,3 +24,4 @@ export const serverTimestamp = () => firebase.firestore.FieldValue.serverTimesta
 
 // Authorization instance
 export const auth = Firebase.auth()
+export const appVerify = (id) => new firebase.auth.RecaptchaVerifier(id, { size: 'compact' })
