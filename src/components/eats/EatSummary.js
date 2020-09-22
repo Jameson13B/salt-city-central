@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-
+import { Icon } from '../../assets/Icons'
 
 export const EatSummary = (props) => {
   const { eat } = props
@@ -17,7 +17,7 @@ export const EatSummary = (props) => {
       >
         <div style={styles.eatHeader}>
           <h2 style={{ marginTop: 0 }}>
-            {eat.name} {eat.attended && <span>&#10004;</span>}
+            {eat.name} {eat.attended && <Icon type="check" />}
           </h2>
           <p style={{ fontStyle: 'italic', marginTop: 0 }}>{eat.neighborhood}</p>
         </div>

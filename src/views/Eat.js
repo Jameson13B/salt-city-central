@@ -9,9 +9,11 @@ export const Eat = (props) => {
   const styles = getStyles()
 
   useEffect(() => {
-    getRestaurant(match.params.id).onSnapshot((doc) => {
-      setEat({ id: doc.id, ...doc.data() })
-    })
+    let unsubscribe = getRestaurant(match.params.id).onSnapshot((doc) =>
+      setEat({ id: doc.id, ...doc.data() }),
+    )
+
+    return () => unsubscribe()
   }, [eat, match])
 
   return (
@@ -22,7 +24,7 @@ export const Eat = (props) => {
         <React.Fragment>
           <div style={styles.eatHeader}>
             <h1 style={{ marginTop: 0 }}>
-              {eat.name} {eat.attended && <span>&#10004;</span>}{' '}
+              {eat.name} {eat.attended && <Icon type="check" />}{' '}
               {eat.url && <Icon onClick={() => window.open(eat.url, '_blank')} type="link" />}
             </h1>
             <p style={{ fontStyle: 'italic', marginTop: 0 }}>{eat.neighborhood}</p>
@@ -31,7 +33,10 @@ export const Eat = (props) => {
           <hr style={{ width: '75%' }} />
           <p style={styles.authorNotes}>"{eat.author_notes}"</p>
           <h3>Features:</h3>
-          <ul>{eat.specialties && eat.specialties.map((speciality) => <li>{speciality}</li>)}</ul>
+          <ul>
+            {eat.specialties &&
+              eat.specialties.map((speciality) => <li key={speciality}>{speciality}</li>)}
+          </ul>
         </React.Fragment>
       )}
     </div>

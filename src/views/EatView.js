@@ -7,22 +7,37 @@ export const EatView = () => {
   const styles = getStyles()
 
   useEffect(() => {
-    restaurants((res) => {
+    let unsubscribe = restaurants((res) => {
       let list = []
 
       res.forEach((eat) => (list = [...list, { id: eat.id, ...eat.data() }]))
       setEats(list)
     })
+
+    return () => unsubscribe()
   }, [eats])
 
   return (
     <div style={styles.container}>
       {eats.length === 0 && <h3 style={styles.loading}>Loading...</h3>}
-      <ul style={styles.list}>
-        {eats.map((eat) => {
-          return <EatSummary eat={eat} key={eat.id} />
-        })}
-      </ul>
+      {eats.length > 0 && (
+        <ul style={styles.list}>
+          <p style={{ color: 'grey', fontSize: '15px', marginBottom: -5, marginLeft: 10 }}>
+            Featured
+          </p>
+          {eats
+            .filter((eat) => eat.featured)
+            .map((eat) => {
+              return <EatSummary eat={eat} key={eat.id} />
+            })}
+          <hr style={{ width: '90%', margin: '25px auto' }} />
+          {eats
+            .filter((eat) => !eat.featured)
+            .map((eat) => {
+              return <EatSummary eat={eat} key={eat.id} />
+            })}
+        </ul>
+      )}
     </div>
   )
 }
