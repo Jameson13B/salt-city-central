@@ -15,7 +15,7 @@ export const EatView = () => {
     })
 
     return () => unsubscribe()
-  }, [eats])
+  }, [])
 
   return (
     <div style={styles.container}>
