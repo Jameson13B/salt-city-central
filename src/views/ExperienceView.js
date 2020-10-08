@@ -44,6 +44,14 @@ export const ExperienceView = () => {
 
 const getStyles = () => {
   return {
-    experience: {},
+    container: {},
+    loading: {
+      marginTop: '80px',
+      textAlign: 'center',
+    },
+    list: {
+      paddingLeft: 0,
+      margin: '0 15px',
+    },
   }
 }
