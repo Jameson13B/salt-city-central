@@ -1,42 +1,84 @@
 import React, { useEffect, useState } from 'react'
+
 import { experiences as experiencesAPI } from '../firebase'
 import { ExperienceSummary } from '../components/experience/ExperienceSummary'
+import { FilterModal } from '../components/FilterModal'
 
 export const ExperienceView = () => {
   const [experiences, setExperiences] = useState([])
+  const [featured, setFeatured] = useState([])
+  const [loading, setLoading] = useState(true)
+  const [showFilter, toggleFilter] = useState(false)
+  const [filter, updateFilter] = useState('all')
   const styles = getStyles()
 
   useEffect(() => {
     let unsubscribe = experiencesAPI((res) => {
       let list = []
+      let featuredList = []
 
-      res.forEach((eat) => (list = [...list, { id: eat.id, ...eat.data() }]))
+      res.forEach((experience) =>
+        experience.data().featured
+          ? (featuredList = [...featuredList, { id: experience.id, ...experience.data() }])
+          : (list = [...list, { id: experience.id, ...experience.data() }]),
+      )
+
+      if (filter !== 'all') {
+        list = list.filter((eat) => eat.neighborhood === filter)
+      }
+
+      setLoading(false)
+      setFeatured(featuredList)
       setExperiences(list)
     })
 
     return () => unsubscribe()
-  }, [])
+  }, [filter])
 
   return (
     <div style={styles.container}>
-      {experiences.length === 0 && <h3 style={styles.loading}>Loading...</h3>}
+      <div
+        style={{
+          alignItems: 'center',
+          display: 'flex',
+          justifyContent: 'space-between',
+          margin: '0 16px',
+        }}
+      >
+        <p style={{ color: 'grey', fontSize: '15px', marginBottom: -5, marginTop: 0 }}>Featured</p>
+        <button className={styles.filter} onClick={() => toggleFilter(true)}>
+          Filter {filter !== 'all' && <span style={{ fontWeight: 'bold' }}>- {filter}</span>}
+        </button>
+      </div>
+      {loading && <h3 style={styles.loading}>Loading...</h3>}
+      {featured.length > 0 && (
+        <ul style={styles.list}>
+          {featured.map((experience) => (
+            <ExperienceSummary experience={experience} key={experience.id} />
+          ))}
+          <hr style={{ width: '90%', margin: '25px auto' }} />
+        </ul>
+      )}
+      {experiences.length === 0 && !loading && (
+        <h3 style={styles.loading}>No results in {filter}</h3>
+      )}
       {experiences.length > 0 && (
         <ul style={styles.list}>
-          <p style={{ color: 'grey', fontSize: '15px', marginBottom: -5, marginLeft: 10 }}>
-            Featured
-          </p>
-          {experiences
-            .filter((experience) => experience.featured)
-            .map((experience) => {
-              return <ExperienceSummary experience={experience} key={experience.id} />
-            })}
-          <hr style={{ width: '90%', margin: '25px auto' }} />
-          {experiences
-            .filter((experience) => !experience.featured)
-            .map((experience) => {
-              return <ExperienceSummary experience={experience} key={experience.id} />
-            })}
+          {experiences.map((experience) => (
+            <ExperienceSummary experience={experience} key={experience.id} />
+          ))}
         </ul>
+      )}
+      {showFilter && (
+        <FilterModal
+          filter={filter}
+          handleClose={() => toggleFilter(false)}
+          handleSubmit={(filter) => {
+            updateFilter(filter)
+            toggleFilter(false)
+          }}
+          title="Filter Experiences"
+        />
       )}
     </div>
   )
