@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { experiences as experiencesAPI } from '../firebase'
 import { ExperienceSummary } from '../components/experience/ExperienceSummary'
 
-export const Experience = () => {
+export const ExperienceView = () => {
   const [experiences, setExperiences] = useState([])
   const styles = getStyles()
 
