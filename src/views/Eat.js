@@ -50,7 +50,6 @@ const getStyles = () => {
     container: {
       border: '3px solid',
       borderBottomWidth: '13px',
-      cursor: 'pointer',
       padding: 20,
       margin: '15px',
       listStyle: 'none',
