@@ -29,7 +29,7 @@ export const Eat = (props) => {
             </h1>
             <p style={{ fontStyle: 'italic', marginTop: 0 }}>{eat.neighborhood}</p>
           </div>
-          <p>{eat.description}</p>
+          <p style={{ textAlign: 'center' }}>{eat.description}</p>
           <hr style={{ width: '75%' }} />
           <p style={styles.authorNotes}>"{eat.author_notes}"</p>
           <h3>Features:</h3>
