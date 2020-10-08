@@ -5,10 +5,11 @@ import { Route } from 'react-router-dom'
 import { Header } from './components/Header'
 import { NavBar } from './components/NavBar'
 
-import { Eat } from './views/Eat'
 import { Home } from './views/Home'
 import { EatView } from './views/EatView'
 import { ExperienceView } from './views/ExperienceView'
+import { Eat } from './views/Eat'
+import { Experience } from './views/Experience'
 import { Exist } from './views/Exist'
 import { AdminForm } from './views/AdminForm'
 
@@ -25,7 +26,7 @@ export const App = () => {
       <Route path="/admin-form" component={AdminForm} />
       <Route exact path="/eat" component={EatView} />
       <Route path="/eat/:id" component={Eat} />
-      <Route path="/experience" component={ExperienceView} />
+      <Route exact path="/experience" component={ExperienceView} />
       <Route path="/experience/:id" component={Experience} />
       <Route path="/exist" component={Exist} />
     </div>
