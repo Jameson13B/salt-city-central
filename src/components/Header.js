@@ -33,6 +33,7 @@ export const Header = () => {
   })
   const [phoneNumber, setPhoneNumber] = useState('')
   const [verifyCode, setVerifyCode] = useState('')
+  const [hideButton, setHideButton] = useState(false)
   const styles = getStyles()
 
   useEffect(() => {
@@ -47,10 +48,12 @@ export const Header = () => {
     if (!phoneNumber || phoneNumber < 10) {
       dispatch({ type: 'setMessage', payload: 'Phone number must be 10 digits' })
     } else {
+      setHideButton(true)
       auth
         .signInWithPhoneNumber(`+1${phoneNumber}`, recaptcha)
         .then((confirmResult) => {
           recaptcha.clear()
+          setHideButton(false)
           dispatch({ type: 'saveId', payload: confirmResult })
           setPhoneNumber('')
         })
@@ -84,13 +87,19 @@ export const Header = () => {
         <h1 style={{ marginBottom: 10 }}>Salt City Central</h1>
       </Link>
       <div style={styles.lock}>
-        {
+        {state.user ? (
+          <Icon
+            className={styles.icon}
+            onClick={() => dispatch({ type: 'toggleProfile', payload: true })}
+            type="user"
+          />
+        ) : (
           <Icon
             className={styles.icon}
             onClick={() => dispatch({ type: 'toggleProfile', payload: true })}
             type="lock"
           />
-        }
+        )}
       </div>
       {state.showProfile && (
         <Fragment>
@@ -125,12 +134,14 @@ export const Header = () => {
                   />
                 )}
                 <div id="recaptcha-container" style={{ margin: '10px 0' }} />
-                <button
-                  onClick={!state.verificationId ? handleLogin : handleVerify}
-                  style={styles.rounded}
-                >
-                  {!state.verificationId ? 'Login' : 'Verify'}
-                </button>
+                {!hideButton && (
+                  <button
+                    onClick={!state.verificationId ? handleLogin : handleVerify}
+                    style={styles.rounded}
+                  >
+                    {!state.verificationId ? 'Login' : 'Verify'}
+                  </button>
+                )}
                 {state.message && <p>{state.message}</p>}
               </Fragment>
             ) : (
@@ -168,12 +179,14 @@ const getStyles = () => {
     title: {
       color: 'black',
       marginBottom: 0,
+      marginLeft: 10,
       textDecoration: 'none',
     },
     lock: {
       alignItems: 'flex-end',
       display: 'flex',
       fill: 'black',
+      marginRight: 10,
     },
     icon: css({
       cursor: 'pointer',
