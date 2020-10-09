@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 
-import { experiences as experiencesAPI } from '../firebase'
+import { getExperiences } from '../firebase'
 import { ExperienceSummary } from '../components/experience/ExperienceSummary'
 import { FilterModal } from '../components/FilterModal'
 
@@ -13,7 +13,7 @@ export const ExperienceView = () => {
   const styles = getStyles()
 
   useEffect(() => {
-    let unsubscribe = experiencesAPI((res) => {
+    let unsubscribe = getExperiences((res) => {
       let list = []
       let featuredList = []
 

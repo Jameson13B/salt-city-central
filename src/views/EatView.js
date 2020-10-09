@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { css } from 'glamor'
 
-import { restaurants } from '../firebase'
+import { getRestaurants } from '../firebase'
 import { EatSummary } from '../components/eats/EatSummary'
 import { FilterModal } from '../components/FilterModal'
 
@@ -14,7 +14,7 @@ export const EatView = () => {
   const styles = getStyles()
 
   useEffect(() => {
-    let unsubscribe = restaurants((res) => {
+    let unsubscribe = getRestaurants((res) => {
       let list = []
       let featuredList = []
 
