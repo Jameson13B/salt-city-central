@@ -18,11 +18,14 @@ export const EatView = () => {
       let list = []
       let featuredList = []
 
-      res.forEach((eat) =>
-        eat.data().featured
-          ? (featuredList = [...featuredList, { id: eat.id, ...eat.data() }])
-          : (list = [...list, { id: eat.id, ...eat.data() }]),
-      )
+      res.forEach((eat) => {
+        if (eat.featured) {
+          featuredList = [...featuredList, { id: eat.id, ...eat.data() }]
+        }
+        list = [...list, { id: eat.id, ...eat.data() }]
+      })
+
+      featuredList = list.filter((eat) => eat.featured)
 
       if (filter !== 'all') {
         list = list.filter((eat) => eat.neighborhood === filter)
